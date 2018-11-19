@@ -36,4 +36,10 @@ var (
 		Code:    "6",
 		Reason:  "Could not modify database",
 	}
+
+	BAD_METHOD = &Result{
+		Message: "Failure",
+		Code: "7",
+		Reason: "Bad method given",
+	}
 )

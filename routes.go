@@ -16,31 +16,31 @@ type Routes []Route
 var routes = Routes{
 	Route{
 		"chitchat get",
-		"get",
+		"GET",
 		"/chitchat",
 		ChitChat,
 	},
 	Route{
 		"chitchat post",
-		"post",
+		"POST",
 		"/chitchat",
 		ChitChat,
 	},
 	Route{
 		"like",
-		"post",
+		"POST",
 		"/chitchat/like/<post_id>",
 		LikeMessage,
 	},
 	Route{
 		"dislike",
-		"post",
-		"/chitchat/dislike/<post_id",
+		"GET",
+		"/chitchat/dislike/<post_id>",
 		DislikeMessage,
 	},
 	Route{
 		"register",
-		"post",
+		"GET",
 		"/chitchat/register",
 		Register,
 	},

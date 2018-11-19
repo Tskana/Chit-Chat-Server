@@ -9,7 +9,7 @@ type Server struct {
 const (
 	DATABASE          = "chitchat"
 	USERCOLECTION     = "chitchatusers"
-	MESSAGESCOLECTION = "messages"
+	MESSAGESCOLECTION = "Messages"
 )
 
 var server *Server

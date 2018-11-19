@@ -5,6 +5,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/smtp"
+	"net/url"
 )
 
 func SendEmail(content string, email string) error {
@@ -29,14 +30,17 @@ func SendEmail(content string, email string) error {
 	return err
 }
 
-func Autherize(client string, key []byte) bool {
+func Authorize(r url.Values) bool {
+	client := r.Get("client")
+	key := r.Get("key")
+
 	user := &User{}
 	err := server.DB(DATABASE).C(USERCOLECTION).Find(client).All(user)
 	if err != nil {
 		return false
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(user.Password), key)
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(key))
 	if err != nil {
 		return false
 	}

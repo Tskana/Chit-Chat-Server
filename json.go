@@ -18,7 +18,7 @@ type Message struct {
 	Dislikes int    `bson:"dislikes"`
 	IP       string `json:"ip"`
 	Likes    int    `bson:"likes"`
-	Location []*int `json:"loc"` // This will likely not work
+	Location []string `json:"loc"` // This will likely not work
 	Message  string `json:"message"`
 }
 
