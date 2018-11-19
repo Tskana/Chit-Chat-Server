@@ -1,2 +1,4 @@
 Paths.go
 *.xml
+*.iml
+*.DS_Store
