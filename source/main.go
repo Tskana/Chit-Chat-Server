@@ -1,7 +1,7 @@
 package main
 
 import (
-	chitchat "github.com/tsukinai/Chit-Chat-Server"
+	chitchat "github.com/tskana/Chit-Chat-Server"
 	"log"
 	"net/http"
 )

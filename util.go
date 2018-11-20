@@ -47,3 +47,20 @@ func Authorize(r url.Values) bool {
 
 	return true
 }
+
+func FindMessageForID(id int) *Message {
+	ms := &Message{}
+
+	err := server.DB(DATABASE).C(MESSAGESCOLECTION).FindId(id).One(ms)
+	if err != nil {
+		log.Fatal(err)
+		return nil
+	}
+
+	return ms
+}
+
+func UpdateMessageForID(ms *Message) error {
+	return server.DB(DATABASE).C(MESSAGESCOLECTION).UpdateId(ms.ID, ms)
+
+}

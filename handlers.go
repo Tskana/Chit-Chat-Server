@@ -92,17 +92,11 @@ func LikeMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ms := &Message{}
-
-	err = server.DB(DATABASE).C(MESSAGESCOLECTION).FindId(id).One(ms)
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	ms := FindMessageForID(id)
 
 	ms.Likes += 1
 
-	err = server.DB(DATABASE).C(MESSAGESCOLECTION).UpdateId(id, ms)
+	err = UpdateMessageForID(ms)
 	if err != nil {
 		log.Fatal(err)
 		json.NewEncoder(w).Encode(BAD_UPDATE)
@@ -129,17 +123,11 @@ func DislikeMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ms := &Message{}
-
-	err = server.DB(DATABASE).C(MESSAGESCOLECTION).FindId(id).One(ms)
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	ms := FindMessageForID(id)
 
 	ms.Dislikes += 1
 
-	err = server.DB(DATABASE).C(MESSAGESCOLECTION).UpdateId(id, ms)
+	err = UpdateMessageForID(ms)
 	if err != nil {
 		log.Fatal(err)
 		json.NewEncoder(w).Encode(BAD_UPDATE)
@@ -185,4 +173,9 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(SUCCESS)
+	err = SendEmail("Your new API key is: " + string(hashed) + ". Do not share this with anyone. This key will only work with client " + email, email)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 }
