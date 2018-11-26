@@ -28,7 +28,7 @@ var routes = Routes{
 	},
 	Route{
 		"like",
-		"POST",
+		"GET",
 		"/chitchat/like/<post_id>",
 		LikeMessage,
 	},
@@ -40,7 +40,7 @@ var routes = Routes{
 	},
 	Route{
 		"register",
-		"GET",
+		"POST",
 		"/chitchat/register",
 		Register,
 	},

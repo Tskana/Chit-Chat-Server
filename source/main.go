@@ -13,7 +13,5 @@ func init() {
 }
 
 func main() {
-	router := chitchat.NewRoutes()
-
-	log.Fatal(http.ListenAndServe(addr, router))
+	log.Fatal(http.ListenAndServe(addr, chitchat.NewRoutes()))
 }
